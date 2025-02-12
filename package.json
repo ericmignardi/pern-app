@@ -1,0 +1,21 @@
+{
+  "name": "pern-app",
+  "version": "1.0.0",
+  "main": "backend/src/server.js",
+  "scripts": {
+    "dev": "node --watch --env-file=backend/.env backend/src/server.js"
+  },
+  "keywords": [],
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
