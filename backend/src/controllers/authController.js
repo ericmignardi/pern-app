@@ -3,22 +3,20 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { firstName, lastName, username, email, password } = req.body;
 
   try {
-    if (!username || !email || !password) {
+    if (!firstName || !lastName || !username || !email || !password) {
       return res
         .status(400)
         .json({ success: false, message: "All Fields Required" });
     }
 
     if (password.length < 6) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Password Must Contain At Least 6 Characters",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Password Must Contain At Least 6 Characters",
+      });
     }
 
     const existingUser = await sql`
@@ -33,10 +31,9 @@ export const register = async (req, res) => {
     const hashedPassword = await bcryptjs.hash(password, salt);
 
     const user = await sql`
-      INSERT INTO users (username, email, password) 
-      VALUES (${username}, ${email}, ${hashedPassword}) RETURNING *`;
+      INSERT INTO users (first_name, last_name, username, email, password) 
+      VALUES (${firstName}, ${lastName}, ${username}, ${email}, ${hashedPassword}) RETURNING *`;
 
-    // FIXED: Corrected the token generation
     const token = jwt.sign({ id: user[0].id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
@@ -53,6 +50,8 @@ export const register = async (req, res) => {
       success: true,
       data: {
         id: user[0].id,
+        firstName: user[0].first_name,
+        lastName: user[0].last_name,
         username: user[0].username,
         email: user[0].email,
       },
@@ -107,6 +106,8 @@ export const login = async (req, res) => {
       success: true,
       data: {
         id: existingUser[0].id,
+        firstName: existingUser[0].first_name,
+        lastName: existingUser[0].last_name,
         username: existingUser[0].username,
         email: existingUser[0].email,
       },

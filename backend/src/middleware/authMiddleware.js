@@ -19,18 +19,16 @@ export const protectRoute = async (req, res, next) => {
         .json({ success: false, message: "Unauthorized - Invalid Token" });
     }
 
-    // FIXED: Await the database query
     const user = await sql`
       SELECT * FROM users WHERE id = ${decoded.id} LIMIT 1`;
 
-    // FIXED: Check if user exists properly
     if (user.length === 0) {
       return res
         .status(404)
         .json({ success: false, message: "User Not Found" });
     }
 
-    req.user = user[0]; // Assign the user object to req.user
+    req.user = user[0];
     next();
   } catch (error) {
     console.log("Error in protectRoute:", error.message);

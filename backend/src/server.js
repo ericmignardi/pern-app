@@ -17,9 +17,12 @@ async function initDB() {
     await sql`
       CREATE TABLE IF NOT EXISTS users (
       id SERIAL PRIMARY KEY,
+      first_name VARCHAR(50) NOT NULL,
+      last_name VARCHAR(50) NOT NULL,
       username VARCHAR(50) UNIQUE NOT NULL,
       email VARCHAR(100) UNIQUE NOT NULL,
       password TEXT NOT NULL,
+      profile_pic TEXT,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)`;
     await sql`
       CREATE TABLE IF NOT EXISTS categories (
@@ -48,6 +51,7 @@ async function initDB() {
       size VARCHAR(20),
       material VARCHAR(100),
       price DECIMAL(10,2),
+      image_url TEXT,
       link TEXT,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)`;
     await sql`
