@@ -8,6 +8,7 @@ import Outfits from "./pages/Outfits";
 import Wishlist from "./pages/Wishlist";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Profile from "./pages/Profile";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/useAuthStore";
 
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/wishlist" element={authUser ? <Wishlist /> : <Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={authUser ? <Profile /> : <Login />} />
       </Routes>
       <Toaster />
     </>
