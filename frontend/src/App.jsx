@@ -13,13 +13,20 @@ import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/useAuthStore";
 
 const App = () => {
-  const { authUser, checkAuth } = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
   console.log({ authUser });
+
+  if (isCheckingAuth && !authUser)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Loading...
+      </div>
+    );
 
   return (
     <>
@@ -31,7 +38,6 @@ const App = () => {
           element={authUser ? <Home /> : <Navigate to="/login" />}
         />
         <Route path="/login" element={authUser ? <Home /> : <Login />} />
-        {/* Todo: Outfits, Wishlist, About, Contact */}
         <Route path="/outfits" element={authUser ? <Outfits /> : <Login />} />
         <Route path="/wishlist" element={authUser ? <Wishlist /> : <Login />} />
         <Route path="/about" element={<About />} />

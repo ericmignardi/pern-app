@@ -5,26 +5,49 @@ const Home = () => {
   const { clothing, isClothingLoading, read } = useClothingStore();
 
   useEffect(() => {
-    read();
-  }, [read]);
+    const fetchClothing = async () => {
+      if (clothing.length === 0 && !isClothingLoading) {
+        console.log("Clothing state is empty, calling read()...");
+        await read();
+      }
+    };
 
-  if (isClothingLoading) return <div>Loading...</div>;
+    fetchClothing();
+  }, [clothing, isClothingLoading, read]);
+
+  useEffect(() => {
+    console.log("Clothing array updated:", clothing);
+  }, [clothing]);
+
+  useEffect(() => {
+    console.log("isClothingLoading:", isClothingLoading);
+  }, [isClothingLoading]);
+
+  if (isClothingLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div>
-      {clothing.map((item) => {
-        return (
-          <div key={item.id} className="flex flex-col">
-            <h1>{item.name}</h1>
-            <h2>{item.brand}</h2>
-            <h3>{item.category}</h3>
-            <h4>{item.colour}</h4>
-            <h5>{item.size}</h5>
-            <p>{item.material}</p>
-            <img src={item.image_url} alt={item.name} />
-          </div>
-        );
-      })}
+    <div key={clothing.length}>
+      <h1>Clothing Items</h1>
+      {clothing.length > 0 ? (
+        <ul>
+          {clothing.map((item) => (
+            <li key={item.id}>
+              <h2>{item.name}</h2>
+              <p>Brand: {item.brand}</p>
+              <p>Category: {item.category}</p>
+              <p>Colour: {item.colour}</p>
+              <p>Size: {item.size}</p>
+              <p>Material: {item.material}</p>
+              <p>Image URL: {item.image_url}</p>
+              <p>Created At: {item.created_at}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No clothing items available.</p>
+      )}
     </div>
   );
 };
