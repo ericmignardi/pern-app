@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore.js";
+import image from "/login.png";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ const Login = () => {
     <div className="grid grid-cols-1 justify-center items-center gap-4">
       <img
         className="size-80 aspect-square my-0 mx-auto"
-        src="src/assets/images/login.png"
+        src={image}
         alt="Man walking out of a closet holding a coffee and a bag"
       />
       <h1 className="text-center font-semibold text-lg">Login</h1>
@@ -62,7 +63,7 @@ const Login = () => {
           type="password"
           id="password"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           value={formData.password}
           onChange={(e) => {
             setFormData((prevState) => ({

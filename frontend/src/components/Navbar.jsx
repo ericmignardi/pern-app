@@ -225,20 +225,21 @@ const Navbar = () => {
               Contact
             </Link>
           </li>
-          <li className="transition-all">
-            <Link
-              to="/profile"
-              className="block text-white hover:text-black font-semibold py-2 px-4 bg-indigo-500 rounded-lg transition-colors duration-300"
-            >
-              Profile
-            </Link>
-          </li>
+
           <li className="transition-all" onClick={handleLogout}>
             <Link
               to="/"
               className="block text-black hover:text-indigo-500 font-semibold py-2 px-4 rounded-lg border-solid border-2 border-indigo-500 transition-colors duration-300"
             >
               Logout
+            </Link>
+          </li>
+          <li className="transition-all">
+            <Link
+              to="/profile"
+              className="block text-white hover:text-black font-semibold py-2 px-4 bg-indigo-500 rounded-lg transition-colors duration-300"
+            >
+              Profile
             </Link>
           </li>
         </ul>
@@ -306,15 +307,7 @@ const Navbar = () => {
                 Contact
               </Link>
             </li>
-            <li>
-              <Link
-                to="/profile"
-                className="block text-white hover:text-black font-semibold py-2 px-4 bg-indigo-500 rounded-lg transition-colors duration-300"
-                onClick={closeMobileMenu}
-              >
-                Profile
-              </Link>
-            </li>
+
             <li onClick={handleLogout}>
               <Link
                 to="/"
@@ -322,6 +315,15 @@ const Navbar = () => {
                 onClick={closeMobileMenu}
               >
                 Logout
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/profile"
+                className="block text-white hover:text-black font-semibold py-2 px-4 bg-indigo-500 rounded-lg transition-colors duration-300"
+                onClick={closeMobileMenu}
+              >
+                Profile
               </Link>
             </li>
           </ul>

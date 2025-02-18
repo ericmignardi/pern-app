@@ -136,3 +136,51 @@ export const verify = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+export const updateProfile = async (req, res) => {
+  const { id } = req.user;
+  const { first_name, last_name, profile_pic } = req.body;
+
+  if (!first_name || !last_name || !profile_pic) {
+    return res.status(400).json({
+      success: false,
+      message: "All Fields Are Required",
+    });
+  }
+
+  try {
+    const user = await sql`
+      SELECT * FROM users WHERE id = ${id}`;
+
+    if (user.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "User does not exist",
+      });
+    }
+
+    const updatedUser = await sql`
+      UPDATE users
+      SET first_name = ${first_name}, last_name = ${last_name}, profile_pic = ${profile_pic}
+      WHERE id = ${id}
+      RETURNING *`;
+
+    if (updatedUser.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Error Updating User Profile",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: updatedUser[0],
+    });
+  } catch (error) {
+    console.log("Error in updateProfile:", error.message);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};

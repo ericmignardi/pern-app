@@ -3,6 +3,10 @@ import cors from "cors";
 import { sql } from "./lib/db.js";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
+import clothingRoutes from "./routes/clothingRoutes.js";
+import wishlistRoutes from "./routes/wishlistRoutes.js";
+import outfitRoutes from "./routes/outfitRoutes.js";
+import outfitItemRoutes from "./routes/outfitItemRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,7 +19,12 @@ app.use(
   })
 );
 app.use(cookieParser());
+
 app.use("/api/auth", authRoutes);
+app.use("/api/clothing", clothingRoutes);
+app.use("/api/outfits", outfitRoutes);
+app.use("/api/outfitItem", outfitItemRoutes);
+app.use("/api/wishlist", wishlistRoutes);
 
 async function initDB() {
   try {
@@ -30,21 +39,16 @@ async function initDB() {
       profile_pic TEXT,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)`;
     await sql`
-      CREATE TABLE IF NOT EXISTS categories (
-      id SERIAL PRIMARY KEY,
-      name VARCHAR(50) UNIQUE NOT NULL)`;
-    await sql`
       CREATE TABLE IF NOT EXISTS wardrobe_items (
       id SERIAL PRIMARY KEY,
       user_id INT REFERENCES users(id) ON DELETE CASCADE,
-      category_id INT REFERENCES categories(id) ON DELETE SET NULL,
       name VARCHAR(100) NOT NULL,
       brand VARCHAR(50),
-      color VARCHAR(50),
+      category VARCHAR(50),
+      colour VARCHAR(50),
       size VARCHAR(20),
       material VARCHAR(100),
       image_url TEXT,
-      purchase_date DATE,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)`;
     await sql`
       CREATE TABLE IF NOT EXISTS wishlist (
@@ -52,9 +56,8 @@ async function initDB() {
       user_id INT REFERENCES users(id) ON DELETE CASCADE,
       name VARCHAR(100) NOT NULL,
       brand VARCHAR(50),
-      color VARCHAR(50),
+      colour VARCHAR(50),
       size VARCHAR(20),
-      material VARCHAR(100),
       price DECIMAL(10,2),
       image_url TEXT,
       link TEXT,

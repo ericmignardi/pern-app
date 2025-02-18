@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore.js";
+import image from "/login.png";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ const Register = () => {
   return (
     <div className="grid grid-cols-1 justify-center items-center gap-4">
       <img
-        src="/src/assets/images/login.png"
+        src={image}
         alt="Man walking out of a closet holding a coffee and a bag"
         className="size-80 aspect-square my-0 mx-auto"
       />
