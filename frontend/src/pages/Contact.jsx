@@ -49,7 +49,7 @@ const Contact = () => {
             placeholder="Full Name"
             id="name"
             name="name"
-            className="border-4 border-indigo-500 rounded-full py-4 px-8"
+            className="border-2 border-solid border-indigo-500 rounded-full py-4 px-8"
           />
           <label htmlFor="email" hidden>
             Email:{" "}
@@ -63,7 +63,7 @@ const Contact = () => {
             placeholder="Email"
             id="email"
             name="email"
-            className="border-4 border-indigo-500 rounded-full py-4 px-8"
+            className="border-2 border-solid border-indigo-500 rounded-full py-4 px-8"
           />
           <label htmlFor="message" hidden>
             Message:{" "}
@@ -76,11 +76,11 @@ const Contact = () => {
             onChange={(e) =>
               setFormData({ ...formData, message: e.target.value })
             }
-            className="border-4 border-indigo-500 rounded-full py-4 px-8 resize-none"
+            className="border-2 border-solid border-indigo-500 rounded-full py-4 px-8"
           ></textarea>
           <button
             type="submit"
-            className="bg-indigo-500 text-white py-2 px-4 rounded"
+            className="block text-white hover:text-black font-semibold py-2 px-4 bg-indigo-500 rounded-lg transition-colors duration-300"
           >
             Send Message
           </button>

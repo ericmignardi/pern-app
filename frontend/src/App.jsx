@@ -9,6 +9,7 @@ import Wishlist from "./pages/Wishlist";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Profile from "./pages/Profile";
+import Create from "./pages/Create";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/useAuthStore";
 
@@ -18,8 +19,6 @@ const App = () => {
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
-
-  console.log({ authUser });
 
   if (isCheckingAuth && !authUser)
     return (
@@ -38,6 +37,7 @@ const App = () => {
           element={authUser ? <Home /> : <Navigate to="/login" />}
         />
         <Route path="/login" element={authUser ? <Home /> : <Login />} />
+        <Route path="/create" element={authUser ? <Create /> : <Login />} />
         <Route path="/outfits" element={authUser ? <Outfits /> : <Login />} />
         <Route path="/wishlist" element={authUser ? <Wishlist /> : <Login />} />
         <Route path="/about" element={<About />} />

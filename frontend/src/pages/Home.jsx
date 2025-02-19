@@ -1,53 +1,43 @@
 import React, { useEffect } from "react";
 import { useClothingStore } from "../store/useClothingStore.js";
+import ClothingCard from "../components/ClothingCard.jsx";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { clothing, isClothingLoading, read } = useClothingStore();
 
   useEffect(() => {
-    const fetchClothing = async () => {
-      if (clothing.length === 0 && !isClothingLoading) {
-        console.log("Clothing state is empty, calling read()...");
-        await read();
-      }
-    };
-
-    fetchClothing();
-  }, [clothing, isClothingLoading, read]);
-
-  useEffect(() => {
-    console.log("Clothing array updated:", clothing);
-  }, [clothing]);
-
-  useEffect(() => {
-    console.log("isClothingLoading:", isClothingLoading);
-  }, [isClothingLoading]);
+    read();
+  }, [read]);
 
   if (isClothingLoading) {
     return <div>Loading...</div>;
   }
 
+  if (clothing.length === 0) {
+    return (
+      <div className="grid grid-cols-1 justify-center items-center gap-4 px-8 py-8">
+        <h1 className="text-2xl text-indigo-500 text-center">My Closet</h1>
+        <Link to="/create">Create</Link>
+        <div>No items available...</div>
+      </div>
+    );
+  }
+
   return (
-    <div key={clothing.length}>
-      <h1>Clothing Items</h1>
-      {clothing.length > 0 ? (
-        <ul>
-          {clothing.map((item) => (
-            <li key={item.id}>
-              <h2>{item.name}</h2>
-              <p>Brand: {item.brand}</p>
-              <p>Category: {item.category}</p>
-              <p>Colour: {item.colour}</p>
-              <p>Size: {item.size}</p>
-              <p>Material: {item.material}</p>
-              <p>Image URL: {item.image_url}</p>
-              <p>Created At: {item.created_at}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No clothing items available.</p>
-      )}
+    <div className="grid grid-cols-1 justify-center items-center gap-4 px-8 py-8">
+      <h1 className="text-2xl text-indigo-500 text-center">My Closet</h1>
+      <Link
+        to="/create"
+        className="bg-green-500 border-none rounded-lg px-2 py-2 text-white justify-self-end"
+      >
+        Create
+      </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-4">
+        {clothing.map((item) => (
+          <ClothingCard key={item.id} item={item} />
+        ))}
+      </div>
     </div>
   );
 };

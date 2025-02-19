@@ -2,7 +2,7 @@ import { create } from "zustand";
 import toast from "react-hot-toast";
 import { axiosInstance } from "../lib/axios.js";
 
-export const useClothingStore = create((get, set) => ({
+export const useClothingStore = create((set, get) => ({
   clothing: [],
   isClothingLoading: false,
   read: async () => {
@@ -60,7 +60,7 @@ export const useClothingStore = create((get, set) => ({
       set({ isClothingLoading: false });
     }
   },
-  delete: async (id) => {
+  deleteById: async (id) => {
     set({ isClothingLoading: true });
     try {
       await axiosInstance.delete(`/clothing/${id}`);

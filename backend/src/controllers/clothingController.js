@@ -52,7 +52,7 @@ export const create = async (req, res) => {
       VALUES (${userId}, ${name}, ${brand}, ${category}, ${colour}, ${size}, ${material}, ${imageUrl})
       RETURNING *`;
 
-    if (!clothingItem) {
+    if (clothingItem.length === 0) {
       return res
         .status(400)
         .json({ success: false, message: "Unable To Insert Data" });
