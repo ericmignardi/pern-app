@@ -76,7 +76,7 @@ const Contact = () => {
             onChange={(e) =>
               setFormData({ ...formData, message: e.target.value })
             }
-            className="border-2 border-solid border-indigo-500 rounded-full py-4 px-8"
+            className="border-2 border-solid border-indigo-500 rounded-full py-4 px-8 resize-none"
           ></textarea>
           <button
             type="submit"

@@ -82,13 +82,13 @@ const WishlistClothingCard = ({ item }) => {
       <div className="grid grid-cols-2 justify-center items-center gap-2">
         <button
           onClick={openModal}
-          className="bg-blue-500 border-none rounded-lg px-2 py-2 text-white"
+          className="bg-indigo-500 border-none rounded-lg px-2 py-2 text-white"
         >
           Update
         </button>
         <button
           onClick={deleteClothing}
-          className="bg-red-500 border-none rounded-lg px-2 py-2 text-white"
+          className="bg-indigo-950 border-none rounded-lg px-2 py-2 text-white"
         >
           Delete
         </button>
@@ -199,7 +199,7 @@ const WishlistClothingCard = ({ item }) => {
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-500 border-none rounded-lg px-2 py-2 text-white"
+                  className="bg-indigo-500 border-none rounded-lg px-2 py-2 text-white"
                 >
                   Save Changes
                 </button>

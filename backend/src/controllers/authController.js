@@ -1,6 +1,7 @@
 import { sql } from "../lib/db.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
+import cloudinary from "../lib/cloudinary.js";
 
 export const register = async (req, res) => {
   const { firstName, lastName, username, email, password } = req.body;
@@ -139,9 +140,9 @@ export const verify = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
   const { id } = req.user;
-  const { first_name, last_name, profile_pic } = req.body;
+  const { profile_pic } = req.body;
 
-  if (!first_name || !last_name || !profile_pic) {
+  if (!profile_pic) {
     return res.status(400).json({
       success: false,
       message: "All Fields Are Required",
@@ -159,9 +160,12 @@ export const updateProfile = async (req, res) => {
       });
     }
 
+    const response = await cloudinary.uploader.upload(profile_pic);
+    const imageUrl = response.secure_url;
+
     const updatedUser = await sql`
       UPDATE users
-      SET first_name = ${first_name}, last_name = ${last_name}, profile_pic = ${profile_pic}
+      SET profile_pic = ${imageUrl}
       WHERE id = ${id}
       RETURNING *`;
 

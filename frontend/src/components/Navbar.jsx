@@ -237,7 +237,7 @@ const Navbar = () => {
           <li className="transition-all">
             <Link
               to="/profile"
-              className="block text-white hover:text-black font-semibold py-2 px-4 bg-indigo-500 rounded-lg transition-colors duration-300"
+              className="block text-white hover:text-black font-semibold py-2 px-4 bg-indigo-500 border-solid border-2 border-indigo-950  rounded-lg transition-colors duration-300"
             >
               Profile
             </Link>
@@ -320,7 +320,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/profile"
-                className="block text-white hover:text-black font-semibold py-2 px-4 bg-indigo-500 rounded-lg transition-colors duration-300"
+                className="block text-white hover:text-black font-semibold py-2 px-4 bg-indigo-500 border-solid border-2 border-indigo-950 rounded-lg transition-colors duration-300"
                 onClick={closeMobileMenu}
               >
                 Profile
