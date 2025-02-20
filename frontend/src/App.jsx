@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Profile from "./pages/Profile";
 import Create from "./pages/Create";
+import WishlistCreate from "./pages/WishlistCreate";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/useAuthStore";
 
@@ -38,8 +39,12 @@ const App = () => {
         />
         <Route path="/login" element={authUser ? <Home /> : <Login />} />
         <Route path="/create" element={authUser ? <Create /> : <Login />} />
-        <Route path="/outfits" element={authUser ? <Outfits /> : <Login />} />
+        {/* <Route path="/outfits" element={authUser ? <Outfits /> : <Login />} /> */}
         <Route path="/wishlist" element={authUser ? <Wishlist /> : <Login />} />
+        <Route
+          path="/wishlist-create"
+          element={authUser ? <WishlistCreate /> : <Login />}
+        />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={authUser ? <Profile /> : <Login />} />

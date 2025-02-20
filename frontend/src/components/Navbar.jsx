@@ -38,14 +38,14 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li className="transition-all">
+            {/* <li className="transition-all">
               <Link
                 to="/outfits"
                 className="hover:text-indigo-500 font-semibold transition-colors duration-300"
               >
                 Outfits
               </Link>
-            </li>
+            </li> */}
             <li className="transition-all">
               <Link
                 to="/wishlist"
@@ -115,7 +115,7 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to="/outfits"
                   className="font-semibold hover:text-indigo-500 transition-colors duration-300"
@@ -123,7 +123,7 @@ const Navbar = () => {
                 >
                   Outfits
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   to="/wishlist"
@@ -193,14 +193,14 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          <li className="transition-all">
+          {/* <li className="transition-all">
             <Link
               to="/outfits"
               className="hover:text-indigo-500 font-semibold transition-colors duration-300"
             >
               Outfits
             </Link>
-          </li>
+          </li> */}
           <li className="transition-all">
             <Link
               to="/wishlist"

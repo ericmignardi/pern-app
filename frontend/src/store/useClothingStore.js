@@ -25,6 +25,7 @@ export const useClothingStore = create((set, get) => ({
       set((state) => ({
         clothing: [...state.clothing, response.data.data],
       }));
+      toast.success("Successfully Loaded Clothing Item");
     } catch (error) {
       console.log("Error in readById: ", error.message);
       toast.error("Unable To Read Clothing Item");
@@ -37,6 +38,7 @@ export const useClothingStore = create((set, get) => ({
     try {
       const response = await axiosInstance.post("/clothing/", formData);
       set({ clothing: [...get().clothing, response.data.data] });
+      toast.success("Successfully Created Clothing Item");
     } catch (error) {
       console.log("Error in create: ", error.message);
       toast.error("Unable To Create Clothing Item");
@@ -53,6 +55,7 @@ export const useClothingStore = create((set, get) => ({
           item.id === id ? response.data.data : item
         ),
       }));
+      toast.success("Successfully Updated Clothing Item");
     } catch (error) {
       console.log("Error in update: ", error.message);
       toast.error("Unable To Update Clothing Item");
@@ -67,6 +70,7 @@ export const useClothingStore = create((set, get) => ({
       set((state) => ({
         clothing: state.clothing.filter((item) => item.id !== id),
       }));
+      toast.success("Successfully Deleted Clothing Item");
     } catch (error) {
       console.log("Error in delete: ", error.message);
       toast.error("Unable To Delete Clothing Item");

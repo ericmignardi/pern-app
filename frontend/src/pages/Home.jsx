@@ -18,7 +18,12 @@ const Home = () => {
     return (
       <div className="grid grid-cols-1 justify-center items-center gap-4 px-8 py-8">
         <h1 className="text-2xl text-indigo-500 text-center">My Closet</h1>
-        <Link to="/create">Create</Link>
+        <Link
+          to="/create"
+          className="bg-green-500 border-none rounded-lg px-2 py-2 text-white justify-self-end"
+        >
+          Create
+        </Link>
         <div>No items available...</div>
       </div>
     );
