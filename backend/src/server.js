@@ -7,9 +7,11 @@ import clothingRoutes from "./routes/clothingRoutes.js";
 import wishlistRoutes from "./routes/wishlistRoutes.js";
 import outfitRoutes from "./routes/outfitRoutes.js";
 import outfitItemRoutes from "./routes/outfitItemRoutes.js";
+import path from "path";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const __dirname = path.resolve();
 
 app.use(
   express.json({
@@ -29,6 +31,13 @@ app.use("/api/clothing", clothingRoutes);
 app.use("/api/outfits", outfitRoutes);
 app.use("/api/outfitItem", outfitItemRoutes);
 app.use("/api/wishlist", wishlistRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  });
+}
 
 async function initDB() {
   try {
