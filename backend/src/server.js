@@ -8,6 +8,9 @@ import wishlistRoutes from "./routes/wishlistRoutes.js";
 import outfitRoutes from "./routes/outfitRoutes.js";
 import outfitItemRoutes from "./routes/outfitItemRoutes.js";
 import path from "path";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
