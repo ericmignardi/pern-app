@@ -27,7 +27,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2 justify-center items-center py-8 px-8">
+    <div className="h-screen grid lg:grid-cols-2 justify-center items-center py-8 px-8">
       <img
         className=""
         src="/login.png"

@@ -18,7 +18,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center gap-4 px-8 py-8">
+    <div className="h-screen flex flex-col justify-center items-center gap-4 px-8 py-8">
       <h1 className="text-2xl text-indigo-500">My Profile</h1>
 
       <label htmlFor="profile_pic">
